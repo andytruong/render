@@ -1,0 +1,21 @@
+{
+    "name": "andytruong/render",
+    "type": "library",
+    "description": "PHP Render library",
+    "keywords": ["api", "render"],
+    "homepage": "https://github.com/andytruong/render",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Andy Truong"
+            , "email": "thehongtt@gmail.com"
+            , "homepage": "http://v3k.net/"
+            , "role": "Lead Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.8",
+        , "pimple/pimple": "2.0.*"
+        , "twig/twig": "1.15.*"
+    },
+}
