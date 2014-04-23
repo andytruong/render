@@ -18,5 +18,5 @@
         , "andytruong/common": "~1.0"
         , "pimple/pimple": "~2.0"
         , "twig/twig": "~1.15"
-    },
+    }
 }
