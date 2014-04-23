@@ -1,4 +1,4 @@
-render
+Render
 ======
 
-Render library
+Render library for PHP 5.3+
