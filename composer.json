@@ -17,7 +17,6 @@
     "require": {
         "php": ">=5.3.8"
         , "andytruong/common": "~1.0"
-        , "pimple/pimple": "~2.0"
         , "twig/twig": "~1.15"
     },
     "require-dev": {
