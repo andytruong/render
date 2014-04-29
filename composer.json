@@ -13,10 +13,16 @@
             , "role": "Lead Developer"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.8"
         , "andytruong/common": "~1.0"
         , "pimple/pimple": "~2.0"
         , "twig/twig": "~1.15"
+    },
+    "autoload": {
+      "psr-4": {
+        "AndyTruong\\Render\\": "src/"
+      }
     }
 }
