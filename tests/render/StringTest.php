@@ -3,10 +3,18 @@
 namespace AndyTruong\Render\TestCases;
 
 class StringTest extends TestCase {
-  public function testOk() {
-    $render = $this->getRender();
-    $expected = 'Hello PHP';
-    $actual = $render->render($expected);
-    $this->assertEquals($expected, $actual);
+  /**
+   * @dataProvider dataProvider
+   */
+  public function testString($input, $msg = '') {
+    $this->assertEquals($input, $this->getRender()->render($input));
+  }
+
+  public function dataProvider() {
+    return array(
+      array('Hello PHP', 'Basic ASCII string'),
+      array('Xin chào ngôn ngữ PHP', 'Vietnamese string'),
+      array('Hi PHP…', 'Special chars'),
+    );
   }
 }
