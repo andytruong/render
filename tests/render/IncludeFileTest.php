@@ -24,9 +24,18 @@ class IncludeFileTest extends TestCase
             'source' => array('type' => 'callback', 'value' => 'AndyTruong\Render\TestCases\Fixtures\IncludingFiles_Callback::render'),
         );
 
+        $function_files = array(
+            'files' => array(
+                __DIR__ . '/Fixtures/IncludingFiles/function.php',
+                __DIR__ . '/Fixtures/IncludingFiles/function_2.php'
+            ),
+            'source' => array('type' => 'callback', 'value' => 'at_render_test_callback_2'),
+        );
+
         return array(
             array($function),
-            array($class)
+            array($class),
+            array($function_files)
         );
     }
 }
