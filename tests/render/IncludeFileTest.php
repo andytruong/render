@@ -2,6 +2,16 @@
 
 namespace AndyTruong\Render\TestCases;
 
+/**
+ * If our callback can not be autoloaded. Using this feature to do that:
+ *
+ *  $input = array(
+ *      array('source' => 'callback', 'value' => 'my_callback_function'),
+ *      'file' => 'path/to/my/file.php'
+ *  );
+ *  $output = at_render($input);
+ *
+ */
 class IncludeFileTest extends TestCase
 {
 
