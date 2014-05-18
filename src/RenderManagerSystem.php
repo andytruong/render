@@ -64,14 +64,18 @@ abstract class RenderManagerSystem extends EventAware
             'conditions' => array(),
             'file' => array(),
             'files' => array(),
+            'before' => array(),
             'source' => array(),
+            'after' => array(),
         );
 
         $this->registerInputCallbacks('condition', 'default', array($this, 'processCondition'));
         $this->registerInputCallbacks('conditions', 'default', array($this, 'processConditions'));
         $this->registerInputCallbacks('file', 'default', array($this, 'processFile'));
         $this->registerInputCallbacks('files', 'default', array($this, 'processFiles'));
+        $this->registerInputCallbacks('before', 'default', array($this, 'processBefore'));
         $this->registerInputCallbacks('source', 'default', array($this, 'processSource'));
+        $this->registerInputCallbacks('after', 'default', array($this, 'processAfter'));
     }
 
     public function registerRender($render_id, $class)

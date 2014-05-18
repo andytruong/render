@@ -54,4 +54,16 @@ abstract class RenderManagerProcessing extends RenderManagerSystem
         }
     }
 
+    public function processBefore($callbacks) {
+        foreach ($callbacks as $callback) {
+            call_user_func_array($callback, array($this));
+        }
+    }
+
+    public function processAfter($callbacks) {
+        foreach ($callbacks as $callback) {
+            call_user_func_array($callback, array($this));
+        }
+    }
+
 }
