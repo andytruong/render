@@ -69,11 +69,11 @@ class RenderManager extends RenderManagerProcessing
 
     protected function build()
     {
-        foreach ($this->input as $key => $value) {
-            if (!empty(self::$input_callbacks[$key])) {
+        foreach (array_keys(self::$input_callbacks) as $key) {
+            if (isset($this->input[$key])) {
                 foreach (self::$input_callbacks[$key] as $callback) {
                     if ($this->process) {
-                        call_user_func_array($callback, array($value));
+                        call_user_func_array($callback, array($this->input[$key]));
                     }
                 }
             }
