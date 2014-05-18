@@ -2,11 +2,15 @@
 
 namespace AndyTruong\Render;
 
+use AndyTruong\Render\Processing\Conditions as ConditionsProcessing;
+
 /**
  * @todo SourceMaker must be pluggable.
  */
 class RenderManager extends BaseRenderManager
 {
+
+    protected $process = true;
 
     public function render($input = NULL)
     {
@@ -37,6 +41,10 @@ class RenderManager extends BaseRenderManager
 
     public function processSource($source)
     {
+        if (!$this->process) {
+            return;
+        }
+
         $output = $this->getOutput();
 
         $render_id = $source['type'];
@@ -45,6 +53,23 @@ class RenderManager extends BaseRenderManager
         if ($render = $this->getRender($render_id)) {
             $arguments = array(); // @todo Implement me
             $output[] = $render->render($render_input, $arguments);
+        }
+    }
+
+    public function processCondition($callback) {
+        if (!is_callable($callback)) {
+            throw new \Exception('Invalidate condition callback.');
+        }
+
+        if (!call_user_func_array($callback, array($this))) {
+            $this->process = false;
+        }
+    }
+
+    public function processConditions($conditions) {
+        $processing = new ConditionsProcessing($conditions);
+        if (!$processing->check($this)) {
+            $this->process = false;
         }
     }
 

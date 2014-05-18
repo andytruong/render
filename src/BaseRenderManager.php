@@ -3,6 +3,7 @@
 namespace AndyTruong\Render;
 
 use AndyTruong\Common\EventAware;
+use Zend\Stdlib\SplStack;
 
 abstract class BaseRenderManager extends EventAware
 {
@@ -36,10 +37,12 @@ abstract class BaseRenderManager extends EventAware
     protected static $renders = array();
 
     /**
-     *
-     * @var type
+     * @todo Priority is important, for examples:
+     *      - `before`, `file` must be processed before `source`
+     *      - `after' must be processed after `source`
+     * @var SplStack
      */
-    protected static $input_callbacks = array();
+    protected static $input_callbacks;
 
     public function __construct()
     {
@@ -55,7 +58,16 @@ abstract class BaseRenderManager extends EventAware
     }
 
     protected function registerDefaultInputCallbacks() {
-        self::$input_callbacks = array();
+        self::$input_callbacks = array(
+            'condition' => array(),
+            'conditions' => array(),
+            'file' => array(),
+            'files' => array(),
+            'source' => array(),
+        );
+
+        $this->registerInputCallbacks('condition', 'default', array($this, 'processCondition'));
+        $this->registerInputCallbacks('conditions', 'default', array($this, 'processConditions'));
 
         $this->registerInputCallbacks('file', 'default', function($file) {
             include_once $file;
