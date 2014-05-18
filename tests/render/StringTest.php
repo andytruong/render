@@ -27,7 +27,7 @@ class StringTest extends TestCase
      */
     public function testNotEqual($unexpected, $input, $msg)
     {
-        $this->assertNotEquals($unexpected, $this->getRender()->render($input), $msg);
+        $this->assertNotEquals($unexpected, $this->getRenderManager()->render($input), $msg);
     }
 
     public function negativeDataProvider()
@@ -38,5 +38,4 @@ class StringTest extends TestCase
             array('Hi PHP… ^^', 'Hi PHP…', 'Special chars'),
         );
     }
-
 }

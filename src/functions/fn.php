@@ -1,6 +1,6 @@
 <?php
 
-use AndyTruong\Render\Render;
+use AndyTruong\Render\RenderManager;
 
 /**
  * Wrapper function to render input.
@@ -9,5 +9,5 @@ use AndyTruong\Render\Render;
  * @return type
  */
 function at_render($input) {
-    return at_id(new Render())->render($input);
+    return at_id(new RenderManager())->render($input);
 }
