@@ -2,8 +2,17 @@
 
 namespace AndyTruong\Render;
 
-abstract class BaseRender
+use AndyTruong\Common\EventAware;
+
+abstract class BaseRender extends EventAware
 {
+
+    /**
+     * Name of event-manager.
+     *
+     * @var string
+     */
+    protected $em_name = 'at_render.extension.register';
 
     /**
      *
@@ -42,18 +51,42 @@ abstract class BaseRender
     protected $call_after;
 
     /**
-     * Flag to know the content is processed.
-     *
-     * @var boolean
-     */
-    protected $processed = FALSE;
-
-    /**
      * File to be loaded before rendering.
      *
      * @var string
      */
     protected $file;
+    protected static $renders = array();
+
+    public function __construct()
+    {
+        $this->registerRender('string', 'AndyTruong\Render\Render\String', false);
+        $this->registerRender('callback', 'AndyTruong\Render\Render\Callback', false);
+    }
+
+    public function registerRender($render_id, $class, $raise_error = true)
+    {
+        if (isset(self::$renders[$render_id])) {
+            if ($raise_error) {
+                throw new \Exception(sprintf('Render %s is already registered', strip_tags($render_id)));
+            }
+            return;
+        }
+        self::$renders[$render_id] = $class;
+    }
+
+    /**
+     *
+     * @param string $render_id
+     * @return \AndyTruong\Render\Render\RenderInterface
+     */
+    public function getRender($render_id)
+    {
+        if (isset(self::$renders[$render_id])) {
+            $render = new self::$renders[$render_id];
+            return $render;
+        }
+    }
 
     /**
      * Wrapper method to set object properties.
@@ -134,16 +167,6 @@ abstract class BaseRender
     public function setCallAfter($calls)
     {
         $this->call_after = $calls;
-    }
-
-    protected function flagProcessed()
-    {
-        $this->processed = TRUE;
-    }
-
-    protected function isProcessed()
-    {
-        return TRUE === $this->processed;
     }
 
 }

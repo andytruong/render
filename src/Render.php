@@ -23,7 +23,6 @@ class Render extends BaseRender
     protected function beforeBuild()
     {
         if (!is_null($this->file)) {
-            print_r(array($this->file)); echo "\n";
             include_once $this->file;
         }
     }
@@ -37,34 +36,17 @@ class Render extends BaseRender
     {
         $this->beforeBuild();
 
-        foreach (get_class_methods(get_class($this)) as $method) {
-            if ('process' === substr($method, 0, 7)) {
-                $return = $this->{$method}();
-                if ($this->isProcessed()) {
-                    break;
-                }
-            }
+        $render_id = $this->source['type'];
+        $render_input = $this->source['value'];
+
+        if ($render = $this->getRender($render_id)) {
+            $arguments = array(); // @todo Implement me
+            return $render->render($render_input, $arguments);
         }
 
         $this->beforeBuild();
 
         return $return;
-    }
-
-    protected function processString()
-    {
-        if ('string' === $this->source['type']) {
-            $this->flagProcessed();
-            return $this->source['value'];
-        }
-    }
-
-    protected function processCallback()
-    {
-        if ('callback' === $this->source['type']) {
-            $this->flagProcessed();
-            return call_user_func($this->source['value']);
-        }
     }
 
 }
