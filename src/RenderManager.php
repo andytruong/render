@@ -7,7 +7,7 @@ use AndyTruong\Render\Processing\Conditions as ConditionsProcessing;
 /**
  * @todo SourceMaker must be pluggable.
  */
-class RenderManager extends BaseRenderManager
+class RenderManager extends RenderManagerBase
 {
 
     protected $process = true;
@@ -56,7 +56,20 @@ class RenderManager extends BaseRenderManager
         }
     }
 
-    public function processCondition($callback) {
+    public function processFile($file)
+    {
+        include_once $file;
+    }
+
+    public function processFiles($files)
+    {
+        foreach ($files as $file) {
+            include_once $file;
+        }
+    }
+
+    public function processCondition($callback)
+    {
         if (!is_callable($callback)) {
             throw new \Exception('Invalidate condition callback.');
         }
@@ -66,7 +79,8 @@ class RenderManager extends BaseRenderManager
         }
     }
 
-    public function processConditions($conditions) {
+    public function processConditions($conditions)
+    {
         $processing = new ConditionsProcessing($conditions);
         if (!$processing->check($this)) {
             $this->process = false;

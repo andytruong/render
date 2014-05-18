@@ -3,9 +3,8 @@
 namespace AndyTruong\Render;
 
 use AndyTruong\Common\EventAware;
-use Zend\Stdlib\SplStack;
 
-abstract class BaseRenderManager extends EventAware
+class RenderManagerSystem extends EventAware
 {
 
     /**
@@ -14,20 +13,6 @@ abstract class BaseRenderManager extends EventAware
      * @var string
      */
     protected $em_name = 'at_render.extension.register';
-
-    /**
-     * Input array
-     *
-     * @var array
-     */
-    protected $input;
-
-    /**
-     * Output.
-     *
-     * @var Output
-     */
-    protected $output;
 
     /**
      * Render plugins.
@@ -42,7 +27,7 @@ abstract class BaseRenderManager extends EventAware
      *      - `after' must be processed after `source`
      * @var SplStack
      */
-    protected static $input_callbacks;
+    protected static $input_callbacks = array();
 
     public function __construct()
     {
@@ -50,14 +35,16 @@ abstract class BaseRenderManager extends EventAware
         $this->registerDefaultInputCallbacks();
     }
 
-    protected function registerDefaultRenders() {
+    protected function registerDefaultRenders()
+    {
         if (empty(self::$renders)) {
             $this->registerRender('string', 'AndyTruong\Render\Render\String');
             $this->registerRender('callback', 'AndyTruong\Render\Render\Callback');
         }
     }
 
-    protected function registerDefaultInputCallbacks() {
+    protected function registerDefaultInputCallbacks()
+    {
         self::$input_callbacks = array(
             'condition' => array(),
             'conditions' => array(),
@@ -68,17 +55,8 @@ abstract class BaseRenderManager extends EventAware
 
         $this->registerInputCallbacks('condition', 'default', array($this, 'processCondition'));
         $this->registerInputCallbacks('conditions', 'default', array($this, 'processConditions'));
-
-        $this->registerInputCallbacks('file', 'default', function($file) {
-            include_once $file;
-        });
-
-        $this->registerInputCallbacks('files', 'default', function($files) {
-            foreach ($files as $file) {
-                include_once $file;
-            }
-        });
-
+        $this->registerInputCallbacks('file', 'default', array($this, 'processFile'));
+        $this->registerInputCallbacks('files', 'default', array($this, 'processFiles'));
         $this->registerInputCallbacks('source', 'default', array($this, 'processSource'));
     }
 
@@ -98,42 +76,4 @@ abstract class BaseRenderManager extends EventAware
         self::$input_callbacks[$key][$id] = $callback;
     }
 
-    /**
-     *
-     * @param string $render_id
-     * @return \AndyTruong\Render\Render\RenderInterface
-     */
-    public function getRender($render_id)
-    {
-        if (isset(self::$renders[$render_id])) {
-            $render = new self::$renders[$render_id];
-            return $render;
-        }
-    }
-
-    /**
-     * Wrapper method to set object properties.
-     *
-     * @param string|array $input
-     */
-    public function setInput($input)
-    {
-        if (!is_array($input)) {
-            throw new \Exception('Input but me an array.');
-        }
-
-        $this->input = $input;
-    }
-
-    public function getInput() {
-        return $this->input;
-    }
-
-    public function getOutput() {
-        if (is_null($this->output)) {
-            $this->output = new Output();
-        }
-
-        return $this->output;
-    }
 }
