@@ -4,15 +4,14 @@ namespace AndyTruong\Render;
 
 use AndyTruong\Render\Processing\Conditions as ConditionsProcessing;
 
+/**
+ * Abtract class to provide processing methods for RenderManagerSystem.
+ */
 abstract class RenderManagerProcessing extends RenderManagerSystem
 {
 
     public function processSource($source)
     {
-        if (!$this->process) {
-            return;
-        }
-
         $output = $this->getOutput();
 
         $render_id = $source['type'];

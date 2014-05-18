@@ -39,10 +39,7 @@ abstract class RenderManagerSystem extends EventAware
     }
 
     /**
-     * @todo Priority is important, for examples:
-     *      - `before`, `file` must be processed before `source`
-     *      - `after' must be processed after `source`
-     * @var SplStack
+     * @var array
      */
     protected static $input_callbacks = array();
 
