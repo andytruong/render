@@ -26,6 +26,19 @@ abstract class RenderManagerSystem extends EventAware
     protected static $renders = array();
 
     /**
+     *
+     * @param string $render_id
+     * @return \AndyTruong\Render\Render\RenderInterface
+     */
+    public function getRender($render_id)
+    {
+        if (isset(self::$renders[$render_id])) {
+            $render = new self::$renders[$render_id];
+            return $render;
+        }
+    }
+
+    /**
      * @todo Priority is important, for examples:
      *      - `before`, `file` must be processed before `source`
      *      - `after' must be processed after `source`

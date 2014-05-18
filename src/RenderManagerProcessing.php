@@ -4,7 +4,7 @@ namespace AndyTruong\Render;
 
 use AndyTruong\Render\Processing\Conditions as ConditionsProcessing;
 
-class RenderManagerProcessing extends RenderManagerBase
+abstract class RenderManagerProcessing extends RenderManagerSystem
 {
 
     public function processSource($source)
