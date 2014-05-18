@@ -4,7 +4,11 @@ namespace AndyTruong\Render;
 
 use AndyTruong\Common\EventAware;
 
-class RenderManagerSystem extends EventAware
+/**
+ * RenderManagerSystem, provider methods for external code can extends render
+ * system.
+ */
+abstract class RenderManagerSystem extends EventAware
 {
 
     /**
