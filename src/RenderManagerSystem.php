@@ -54,6 +54,7 @@ abstract class RenderManagerSystem extends EventAware
         if (empty(self::$renders)) {
             $this->registerRender('string', 'AndyTruong\Render\Render\StringRender');
             $this->registerRender('callback', 'AndyTruong\Render\Render\CallbackRender');
+            $this->registerRender('twig', 'AndyTruong\Render\Render\TwigRender');
         }
     }
 

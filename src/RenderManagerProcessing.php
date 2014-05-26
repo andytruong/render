@@ -24,7 +24,7 @@ abstract class RenderManagerProcessing extends RenderManagerSystem
     }
 
     /**
-     * Callback of to process $input['file']
+     * Callback to process $input['file']
      *
      * @param string $file
      */
@@ -34,7 +34,7 @@ abstract class RenderManagerProcessing extends RenderManagerSystem
     }
 
     /**
-     * Callback of to process $input['files']
+     * Callback to process $input['files']
      *
      * @param array $files
      */
@@ -46,7 +46,7 @@ abstract class RenderManagerProcessing extends RenderManagerSystem
     }
 
     /**
-     * Callback of to process $input['condition']
+     * Callback to process $input['condition']
      *
      * @param callable $callback
      * @throws \Exception
@@ -63,7 +63,7 @@ abstract class RenderManagerProcessing extends RenderManagerSystem
     }
 
     /**
-     * Callback of to process $input['conditions']
+     * Callback to process $input['conditions']
      *
      * @param array $conditions
      */
@@ -76,7 +76,7 @@ abstract class RenderManagerProcessing extends RenderManagerSystem
     }
 
     /**
-     * Callback of to process $input['before']
+     * Callback to process $input['before']
      *
      * @param array $callbacks
      */
@@ -87,7 +87,7 @@ abstract class RenderManagerProcessing extends RenderManagerSystem
     }
 
     /**
-     * Callback of to process $input['after']
+     * Callback to process $input['after']
      *
      * @param array $callbacks
      */
