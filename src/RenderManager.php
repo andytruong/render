@@ -35,7 +35,7 @@ class RenderManager extends RenderManagerProcessing
     public function setInput($input)
     {
         if (!is_array($input)) {
-            throw new \Exception('Input but me an array.');
+            throw new \Exception('Input must be an array.');
         }
 
         $this->input = $input;
