@@ -4,15 +4,18 @@ namespace AndyTruong\Render\TestCases\Renders;
 
 use AndyTruong\Render\TestCases\TestCase;
 
-class StringTest extends TestCase
+class StringRenderTest extends TestCase
 {
 
     /**
      * @dataProvider dataProvider
      */
-    public function testString($input, $msg)
+    public function testString($string, $msg)
     {
-        $this->assertEquals($input, at_render($input), $msg);
+        $array = array('source' => array('type' => 'string', 'value' => $string));
+
+        $this->assertEquals($string, at_render($string), $msg);
+        $this->assertEquals($string, at_render($array), $msg);
     }
 
     public function dataProvider()
@@ -27,9 +30,12 @@ class StringTest extends TestCase
     /**
      * @dataProvider negativeDataProvider
      */
-    public function testNotEqual($unexpected, $input, $msg)
+    public function testNotEqual($string, $input, $msg)
     {
-        $this->assertNotEquals($unexpected, $this->getRenderManager()->render($input), $msg);
+        $array = array('source' => array('type' => 'string', 'value' => $input));
+
+        $this->assertNotEquals($string, at_render($input), $msg);
+        $this->assertEquals($input, at_render($array), $msg);
     }
 
     public function negativeDataProvider()
@@ -40,4 +46,5 @@ class StringTest extends TestCase
             array('Hi PHP… ^^', 'Hi PHP…', 'Special chars'),
         );
     }
+
 }

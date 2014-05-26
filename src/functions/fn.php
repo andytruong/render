@@ -5,8 +5,8 @@ use AndyTruong\Render\RenderManager;
 /**
  * Wrapper function to render input.
  *
- * @param type $input
- * @return type
+ * @param string|array $input
+ * @return string
  */
 function at_render($input) {
     if (is_string($input)) {

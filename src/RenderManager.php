@@ -2,8 +2,6 @@
 
 namespace AndyTruong\Render;
 
-use AndyTruong\Render\Processing\Conditions as ConditionsProcessing;
-
 class RenderManager extends RenderManagerProcessing
 {
 
