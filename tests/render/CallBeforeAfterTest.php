@@ -18,15 +18,16 @@ class CallBeforeAfterTest extends TestCase
     /**
      * @dataProvider dataProviderCalling
      */
-    public function testCalling($position) {
+    public function testCalling($position)
+    {
         $called = false;
 
         $input = array(
-            'source'  => array('type' => 'string', 'value' => 'Hello PHP!'),
+            'source' => array('type' => 'string', 'value' => 'Hello PHP!'),
             $position => array(
                 function($render_manager) use (&$called) {
-                    $called = true;
-                }
+                $called = true;
+            }
             ),
         );
 
@@ -35,10 +36,12 @@ class CallBeforeAfterTest extends TestCase
         $this->assertTrue($called);
     }
 
-    public function dataProviderCalling() {
+    public function dataProviderCalling()
+    {
         return array(
             array('before'),
             array('after'),
         );
     }
+
 }
