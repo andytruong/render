@@ -2,7 +2,7 @@
 
 namespace AndyTruong\Render\Render;
 
-class String implements RenderInterface
+class StringRender implements RenderInterface
 {
 
     public function render($input, $arguments = array())

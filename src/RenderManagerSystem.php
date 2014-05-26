@@ -52,8 +52,8 @@ abstract class RenderManagerSystem extends EventAware
     protected function registerDefaultRenders()
     {
         if (empty(self::$renders)) {
-            $this->registerRender('string', 'AndyTruong\Render\Render\String');
-            $this->registerRender('callback', 'AndyTruong\Render\Render\Callback');
+            $this->registerRender('string', 'AndyTruong\Render\Render\StringRender');
+            $this->registerRender('callback', 'AndyTruong\Render\Render\CallbackRender');
         }
     }
 
