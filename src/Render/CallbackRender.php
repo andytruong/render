@@ -2,7 +2,7 @@
 
 namespace AndyTruong\Render\Render;
 
-class Callback implements RenderInterface
+class CallbackRender implements RenderInterface
 {
 
     public function render($input, $arguments = array())
