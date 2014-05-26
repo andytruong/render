@@ -23,11 +23,21 @@ abstract class RenderManagerProcessing extends RenderManagerSystem
         }
     }
 
+    /**
+     * Callback of to process $input['file']
+     *
+     * @param string $file
+     */
     public function processFile($file)
     {
         include_once $file;
     }
 
+    /**
+     * Callback of to process $input['files']
+     *
+     * @param array $files
+     */
     public function processFiles($files)
     {
         foreach ($files as $file) {
@@ -35,6 +45,12 @@ abstract class RenderManagerProcessing extends RenderManagerSystem
         }
     }
 
+    /**
+     * Callback of to process $input['condition']
+     *
+     * @param callable $callback
+     * @throws \Exception
+     */
     public function processCondition($callback)
     {
         if (!is_callable($callback)) {
@@ -46,6 +62,11 @@ abstract class RenderManagerProcessing extends RenderManagerSystem
         }
     }
 
+    /**
+     * Callback of to process $input['conditions']
+     *
+     * @param array $conditions
+     */
     public function processConditions($conditions)
     {
         $processing = new ConditionsProcessing($conditions);
@@ -54,12 +75,22 @@ abstract class RenderManagerProcessing extends RenderManagerSystem
         }
     }
 
+    /**
+     * Callback of to process $input['before']
+     *
+     * @param array $callbacks
+     */
     public function processBefore($callbacks) {
         foreach ($callbacks as $callback) {
             call_user_func_array($callback, array($this));
         }
     }
 
+    /**
+     * Callback of to process $input['after']
+     *
+     * @param array $callbacks
+     */
     public function processAfter($callbacks) {
         foreach ($callbacks as $callback) {
             call_user_func_array($callback, array($this));
