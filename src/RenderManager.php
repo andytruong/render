@@ -39,6 +39,16 @@ class RenderManager extends RenderManagerProcessing
         $this->input = $input;
     }
 
+    public function setArguments($arguments)
+    {
+        $this->input['arguments'] = $arguments;
+    }
+
+    public function getArguments()
+    {
+        return isset($this->input['arguments']) ? $this->input['arguments'] : array();
+    }
+
     public function getInput()
     {
         return $this->input;

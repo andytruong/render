@@ -18,7 +18,7 @@ abstract class RenderManagerProcessing extends RenderManagerSystem
         $render_input = $source['value'];
 
         if ($render = $this->getRender($render_id)) {
-            $arguments = array(); // @todo Implement me
+            $arguments = $this->getArguments();
             $output[] = $render->render($render_input, $arguments);
         }
     }
