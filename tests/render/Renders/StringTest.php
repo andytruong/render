@@ -1,6 +1,8 @@
 <?php
 
-namespace AndyTruong\Render\TestCases;
+namespace AndyTruong\Render\TestCases\Renders;
+
+use AndyTruong\Render\TestCases\TestCase;
 
 class StringTest extends TestCase
 {
