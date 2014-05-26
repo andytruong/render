@@ -58,9 +58,6 @@ class RenderManager extends RenderManagerProcessing
     public function render($input = NULL)
     {
         if (!is_null($input)) {
-            if (is_string($input)) {
-                $input = array('source' => array('type' => 'string', 'value' => $input));
-            }
             $this->setInput($input);
         }
 
