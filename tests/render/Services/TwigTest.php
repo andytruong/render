@@ -16,13 +16,14 @@ class TwigTest extends \PHPUnit_Framework_TestCase
 
     public function testFactoryOptions()
     {
-        $em = new EventManager();
-        $em->attach('at.twig.factory.options', function ($e) {
-            return array('debug' => TRUE, 'foo' => 'bar');
-        });
-        at_event_manager('at.twig.factory', $em);
-
         $factory = new TwigFactory();
+
+        $factory
+            ->getEventManager()
+            ->attach('at.twig.factory.options', function ($e) {
+                return array('debug' => true, 'foo' => 'bar');
+            });
+
         $options = $factory->getOptions();
         $this->assertTrue($options['debug']);
         $this->assertEquals('bar', $options['foo']);
@@ -37,7 +38,7 @@ class TwigTest extends \PHPUnit_Framework_TestCase
         });
         at_event_manager('at.twig.extension', $em);
 
-        $this->assertInstanceOf('Twig_SimpleFilter', at_twig($refresh = TRUE)->getFilter('at_common_print'));
+        $this->assertInstanceOf('Twig_SimpleFilter', at_twig($refresh = true)->getFilter('at_common_print'));
     }
 
 }
