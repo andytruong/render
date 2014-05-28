@@ -1,7 +1,7 @@
 <?php
 
 use AndyTruong\Render\RenderManager,
-    AndyTruong\Common\Factories\TwigFactory;
+    AndyTruong\Render\Factories\TwigFactory;
 
 /**
  * Wrapper function to render input.
@@ -32,4 +32,20 @@ function at_twig($refresh = false)
     }
 
     return $twig;
+}
+
+/**
+ * Get SASS parser.
+ *
+ * @return SassParser
+ */
+function at_sass($refresh = false)
+{
+    static $sass_parser;
+
+    if ($refresh || is_null($refresh)) {
+        $parser = new SassParser($settings);
+    }
+
+    return $sass_parser;
 }
