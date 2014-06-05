@@ -3,7 +3,7 @@
 namespace AndyTruong\Render\Factories;
 
 use Twig_Environment,
-    AndyTruong\Common\TwigExtension,
+    AndyTruong\Render\TwigExtension,
     AndyTruong\Common\EventAware;
 
 /**
