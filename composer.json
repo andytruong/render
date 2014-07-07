@@ -16,8 +16,8 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.8"
-        , "andytruong/common": "~0.1"
-        , "twig/twig": "~1.15"
+        , "andytruong/common": "@stable"
+        , "twig/twig": "~1.16"
     },
     "require-dev": {
       "phpunit/phpunit": "~4.1"
